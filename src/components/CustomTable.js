@@ -11,21 +11,21 @@ export default function CustomTable({ data, columns, totalCount, limit }) {
       <Table striped bordered hover variant="dark"  >
         <thead>
           <tr>
-            {columns.map(item => {
+            {columns.map((item, columnIndex) => {
               // const SortIcon = () => {
               //   if (orderBy !== item.field) return null;
               //   return orderBy === item.field && order === "asc" ? <RiArrowUpLine /> : <RiArrowDownLine />;
               // };
-              return (<th>{item.label}</th>)
+              return (<th key={columnIndex}> {item.label}</th>)
             })}
           </tr>
         </thead>
         <tbody>
           {
-            data.slice((page - 1) * limit, page * limit + limit).map(row =>
-              <tr>{
-                columns.map(column =>
-                  <td>{row?.[column?.field]}</td>
+            data.slice((page - 1) * limit, page * limit + limit).map((row, rowIndex) =>
+              <tr key={rowIndex} >{
+                columns.map((column, columnIndex) =>
+                  <td key={columnIndex}>{row?.[column?.field]}</td>
                 )} </tr>
             )
           }
@@ -39,7 +39,7 @@ export default function CustomTable({ data, columns, totalCount, limit }) {
             onClick={() => setPage(page - 1)}
           />
           {[...Array(Math.ceil(totalCount / limit) || 1)].map((_, index) => (
-            <Pagination.Item
+            <Pagination.Item key={index}
               active={index + 1 === page}
               onClick={() => setPage(index + 1)}>{index + 1}</Pagination.Item>
           ))}
