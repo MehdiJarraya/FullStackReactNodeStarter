@@ -16,7 +16,10 @@ function App() {
         // mapping of nested field
         "role":item.role?.role_code
       }))}
-      columns={employeeColumns} />
+      columns={employeeColumns}
+      totalCount={employeeData.length}
+      limit={5}
+      />
     </Container>
 
   );
