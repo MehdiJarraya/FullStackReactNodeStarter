@@ -9,6 +9,6 @@ export const employeeData = [
     { name: "g", email: "gg@gg.gg" },
 ]
 export const employeeColumns = [
-    { label: "Name", field: "name" },
-    { label: "Email", field: "email" }
+    { label: "Name", property: "name" },
+    { label: "Email", property: "email" }
 ]

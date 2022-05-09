@@ -1,10 +1,43 @@
 import React from 'react'
 import { Table } from "react-bootstrap"
 import Pagination from 'react-bootstrap/Pagination'
+import { BsSortAlphaDownAlt, BsSortAlphaUpAlt } from 'react-icons/bs';
+
+
+const descendingComparator = (a, b, orderBy) => {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+const getComparator = (order, orderBy) => {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+
 
 export default function CustomTable({ data, columns, totalCount, limit }) {
 
   const [page, setPage] = React.useState(1)
+  const [orderBy, setOrderBy] = React.useState(columns[0].property)
+  const [order, setOrder] = React.useState("asc")
+
+  const handleRequestSort = (property) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  const renderSortIcon = (property) => {
+    if (orderBy !== property) return null;
+    return orderBy === property && order === "asc" ? <BsSortAlphaDownAlt /> : <BsSortAlphaUpAlt />;
+  }
 
   return (
     <div className='w-100'>
@@ -12,22 +45,17 @@ export default function CustomTable({ data, columns, totalCount, limit }) {
         <thead>
           <tr>
             {columns.map((item, columnIndex) => {
-              // const SortIcon = () => {
-              //   if (orderBy !== item.field) return null;
-              //   return orderBy === item.field && order === "asc" ? <RiArrowUpLine /> : <RiArrowDownLine />;
-              // };
-              return (<th key={columnIndex}> {item.label}</th>)
+              return <th onClick={()=>handleRequestSort(item.property)} key={columnIndex}>{item.label}  {renderSortIcon(item.property)}</th>
             })}
           </tr>
         </thead>
         <tbody>
-          {
-            data.slice((page - 1) * limit, page * limit + limit).map((row, rowIndex) =>
-              <tr key={rowIndex} >{
-                columns.map((column, columnIndex) =>
-                  <td key={columnIndex}>{row?.[column?.field]}</td>
-                )} </tr>
-            )
+          {data.slice().sort(getComparator(order, orderBy)).slice((page - 1) * limit, page * limit + limit).map((row, rowIndex) =>
+            <tr key={rowIndex} >{
+              columns.map((column, columnIndex) =>
+                <td key={columnIndex}>{row?.[column?.property]}</td>
+              )} </tr>
+          )
           }
         </tbody>
       </Table>
@@ -47,11 +75,7 @@ export default function CustomTable({ data, columns, totalCount, limit }) {
             onClick={() => setPage(page + 1)} />
         </Pagination>
       }
-
-
     </div>
-
-
 
   )
 }
