@@ -1,0 +1,21 @@
+{
+    "name": "project",
+    "version": "1.0.0",
+    "description": "This IDE environment gives you access to a linux based virtual machine. A few tips: 1. `Ctrl + J` to open/close terminal. 2. click menu button located at top left to check out more functionalities/customizations. 3. `apt` and `snap` has been preloaded, so you can use `apt` or `snap` to install packages. 4. make sure all of your code are written inside this project folder.",
+    "main": "index.js",
+    "type": "module",
+    "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.18.1"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.16"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "dev": "nodemon --es-module-specifier-resolution=node index.js"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+  

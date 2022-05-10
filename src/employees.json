@@ -1,0 +1,27 @@
+{
+
+    "employees": [
+  
+      { "id": 1, "name": "Tony Stark", "email": "tony.stark@avengers.com", "username": "tonystark", "role_id": 1},
+  
+      { "id": 2, "name": "Steve Rogers", "email": "steve.rogers@avengers.com", "username": "steverogers", "role_id": 2 },
+  
+      { "id": 3, "name": "Clint Barton", "email": "clint.barton@avengers.com", "username": "clintbarton", "role_id": 3 },
+  
+      { "id": 4, "name": "Natasha Romanoff", "email": "natasha.romanoff@avengers.com", "username": "natasharomanoff", "role_id": 4 },
+  
+      { "id": 5, "name": "Thor Odinson", "email": "thor.odinson@avengers.com", "username": "thorodinson", "role_id": 5 },
+  
+      { "id": 6, "name": "Nick Fury", "email": "nick.fury@avengers.com", "username": "nickfury", "role_id": 6 },
+  
+      { "id": 7, "name": "Bruce Banner", "email": "bruce.banner@avengers.com", "username": "brucebanner", "role_id": 7 },
+  
+      { "id": 8, "name": "Maria Hill", "email": "maria.hill@avengers.com", "username": "mariahill", "role_id": 8 },
+  
+      { "id": 9, "name": "Bucky Barnes", "email": "bucky.barnes@avengers.com", "username": "buckybarnes", "role_id": 9 },
+  
+      { "id": 10, "name": "Peter Parker", "email": "peter.parker@avengers.com", "username": "peterparker", "role_id": 10 }
+  
+    ]
+  
+  }
