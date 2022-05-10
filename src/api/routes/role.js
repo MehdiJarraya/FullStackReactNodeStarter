@@ -3,23 +3,25 @@ import { roles } from '../db'
 const GetRoleByCode = (req, res) => {
     const code = req?.params?.code
     const regexObj = new RegExp(code, 'i')
-    const filtedRoles = roles.filter(item =>
+    const role = roles.find(item =>
         item.role_code.match(regexObj)
     )
-    res.status(200).send(filtedRoles)
+    if(!role){
+        return res.status(404).send({ error: true, code: "ROLE_NOT_FOUND" })
+    }
+    return res.status(200).send(role)
 }
 
 const getRoles = (req, res) => {
-    res.status(200).send(roles)
+    return res.status(200).send(roles)
 }
 
 const SaveRole = (req, res) => {
-    const role = req.body?.role
-
+    const role = req.body
     //validate data
     if (!role || !role.role_code ||
         !role.role_name) {
-        res.status(400).send({ error: true, code: "ROLE_NOT_VALID" })
+        return res.status(400).send({ error: true, code: "INVALID_ROLE" })
     }
 
     const regexObjCode = new RegExp(role.role_code, 'i')
@@ -27,12 +29,12 @@ const SaveRole = (req, res) => {
         item.role_code.match(regexObjCode)
     )
     if (roleWithSameCode) {
-        res.status(400).send({ error: true, code: "CODE_EXIST" })
+        return res.status(400).send({ error: true, code: "CODE_EXIST" })
     }
 
     const newRole = { ...role, id: roles.length + 1 }
     roles.push(newRole)
-    res.status(201).send(newRole)
+    return res.status(201).send(newRole)
 }
 
 
