@@ -1,10 +1,4 @@
-import { readFile } from 'fs/promises';
-
-export const roles = JSON.parse(
-    await readFile(
-        new URL('../../roles.json', import.meta.url)
-    )
-).roles
+import { roles } from '../db'
 
 const GetRoleByCode = (req, res) => {
     const code = req?.params?.code

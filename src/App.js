@@ -2,7 +2,7 @@ import { Button, Container, FormControl, InputGroup } from 'react-bootstrap'
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import CustomTable from "./components/CustomTable"
-import {employeeColumns} from "./constants"
+import { employeeColumns } from "./constants"
 import './App.css';
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   return (
-    <Container  className="App">
+    <Container className="App">
       <InputGroup className="m-3">
         <FormControl
           placeholder="Employee name"
@@ -52,9 +52,9 @@ function App() {
           Search
         </Button>
       </InputGroup>
-      <CustomTable data={employees} columns={employeeColumns} limit={5}/>
 
-      {employees.length === 0 && <h3>No employees found</h3>}
+
+      {employees.length > 0 ? <CustomTable data={employees} columns={employeeColumns} limit={5} /> : <h3>No employees found</h3>}
     </Container>
 
   );

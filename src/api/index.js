@@ -1,21 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { readFile } from 'fs/promises';
 import { SearchEmployeesByName, getEmployees, SaveEmployee } from './routes/employee';
 import { GetRoleByCode, getRoles, SaveRole } from './routes/role';
-
-// export const roles = JSON.parse(
-//   await readFile(
-//       new URL('../roles.json', import.meta.url)
-//   )
-// ).roles
-
-// export const employees = JSON.parse(
-//   await readFile(
-//       new URL('../employees.json', import.meta.url)
-//   )
-// );
-
 
 var app = express();
 app.use(express.json());
